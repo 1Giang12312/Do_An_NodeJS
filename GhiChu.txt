@@ -1,0 +1,9 @@
+admin:
+-Tên đăng nhập: admin1
+-Mật khẩu      : 1
+user:
+-Tên đăng nhập: test321
+- mật khẩu    : 1
+- Phần mềm : Xampp
+- CSDL: mySQL
+- Số lượng của sản phẩm sẽ được kiểm tra (nếu đủ số lượng cần mua sẽ trừ đi nếu không đủ sẽ thông báo) khi bấm nút "mua" trong giỏ hàng

@@ -1,0 +1,93 @@
+<head>
+	<style>
+		header.sticky{
+		background-color: rgb(255, 255, 255);
+		opacity: 1;
+		z-index: 100;
+		position: fixed;
+		height: 80px;
+		transition: all 0.6s ease-in-out;
+		width: 100%;
+  		}
+		header{
+			background-color: transparent;
+			width: 100%;
+			transition: all 0.6s ease-in-out;
+			height: 100px;
+			font-weight: 700;
+			}
+	</style>
+
+</head>
+
+<header class="navbar navbar-expand-lg navbar-light container">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/"><i class="bi bi-phone-fill"></i>Cửa hàng điện thoại</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" href="#"><i class="bi bi-compass"></i>Giảm giá</a>
+				</li>
+				<% if(!session.MaNguoiDung) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="/dangnhap"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/dangky"><i class="bi bi-person-plus-fill"></i> Đăng ký</a>
+					</li>
+				<% } else { %>
+					<% if(session.QuyenHan == 'admin') { %>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-gear"></i> Quản lý
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="/hsx"><i class="bi bi-card-checklist"></i>Hãng sản xuất</a></li>
+								<li><a class="dropdown-item" href="/taikhoan"><i class="bi bi-people"></i> Tài khoản</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="/dienthoai"><i class="bi bi-file-earmark-richtext"></i>Sản phẩm</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="/hoadon"><i class="bi bi-file-earmark-plus"></i>Duyệt hóa đơn</a></li>
+							
+							</ul>
+						</li>
+					<% } %>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-person"></i> <%= session.HoVaTen %> 
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/taikhoan/thongtincanhan/<%= session.MaNguoiDung %>"><i class="bi bi-people"></i> Thông tin cá nhân</a></li>
+							<li><a class="dropdown-item" href="/hoadon/lichsu/<%= session.MaNguoiDung %>"><i class="bi bi-file-earmark-plus"></i>Lịch sử mua hàng</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="/giohang/<%= session.MaNguoiDung %>"><i class="bi bi-person-badge"></i>Xem giỏ hàng</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/dangxuat"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+					</li>
+				<% } %>
+			</ul>
+			<form action="/timkiem" method="post" class="d-flex">
+				<input class="form-control me-2" type="search" name="tukhoa" placeholder="Tên điện thoại hoặc HSX">
+				<button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i>Tìm</button>
+			</form>
+		</div>
+		
+	</div>
+</header>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function(){
+        $(window).scroll(function(){
+            if($(this).scrollTop()){
+                $('header').addClass('sticky');
+            }else{
+                $('header').removeClass('sticky');
+            }
+        });
+    });
+</script>	
